@@ -28,8 +28,8 @@ public class SimpleFastScanner implements Closeable, Iterator<String> {
 
   @Override
   public boolean hasNext() {
-    read();
-    return tokenizer.hasMoreTokens();
+    boolean result = read();
+    return result && tokenizer.hasMoreTokens();
   }
 
   @Override
@@ -56,13 +56,18 @@ public class SimpleFastScanner implements Closeable, Iterator<String> {
     return Double.parseDouble(next());
   }
 
-  private void read() {
+  private boolean read() {
     while (tokenizer == null || !tokenizer.hasMoreTokens()) {
       try {
-        tokenizer = new StringTokenizer(reader.readLine());
+        String nextLine = reader.readLine();
+        if (nextLine == null) {
+          return false;
+        }
+        tokenizer = new StringTokenizer(nextLine);
       } catch (IOException e) {
         System.out.println("I/O error " + e.getMessage());
       }
     }
+    return true;
   }
 }
