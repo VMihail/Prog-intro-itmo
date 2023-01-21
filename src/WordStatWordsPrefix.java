@@ -1,20 +1,29 @@
-import java.io.*;
-import java.util.LinkedHashMap;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
-public class WordStatInput {
+public class WordStatWordsPrefix {
+  private static final int prefixLen = 3;
+
   private static void addWord(final Map<String, Integer> dictionary, String word) {
-    if (dictionary.containsKey(word)) {
-      dictionary.put(word, dictionary.get(word) + 1);
+    if (word.length() < prefixLen) {
+      return;
+    }
+    String prefix = word.substring(0, prefixLen);
+    if (dictionary.containsKey(prefix)) {
+      dictionary.put(prefix, dictionary.get(prefix) + 1);
     } else {
-      dictionary.put(word, 1);
+      dictionary.put(prefix, 1);
     }
   }
 
   public static void main(String[] args) {
     if (args.length != 2) {
-      throw new InvalidNumberOfArguments(2);
+      throw new WordStatInput.InvalidNumberOfArguments(2);
     }
     String inputFileName = args[0];
     String outputFileName = args[1];
@@ -27,7 +36,7 @@ public class WordStatInput {
     Map<String, Integer> dictionary;
     try {
       assert in != null;
-      dictionary =  new LinkedHashMap<>();
+      dictionary =  new TreeMap<>();
       while (in.hasNextLine()) {
         String nextLine = in.nextLine().toLowerCase();
         StringBuilder nextWord = new StringBuilder();
@@ -60,12 +69,6 @@ public class WordStatInput {
     } finally {
       assert out != null;
       out.close();
-    }
-  }
-
-  static class InvalidNumberOfArguments extends RuntimeException {
-    public InvalidNumberOfArguments(int count) {
-      super("Invalid number of arguments, expected " + count);
     }
   }
 }
