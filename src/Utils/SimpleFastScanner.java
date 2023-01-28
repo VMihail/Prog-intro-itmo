@@ -1,11 +1,10 @@
 package Utils;
 
 import java.io.*;
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-public class SimpleFastScanner implements Closeable, Iterator<String> {
+public class SimpleFastScanner implements ISimpleScanner {
   private final BufferedReader reader;
   private StringTokenizer tokenizer;
 
