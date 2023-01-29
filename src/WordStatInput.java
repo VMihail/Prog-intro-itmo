@@ -63,7 +63,7 @@ public class WordStatInput {
     }
   }
 
-  static class InvalidNumberOfArguments extends RuntimeException {
+  public static class InvalidNumberOfArguments extends RuntimeException {
     public InvalidNumberOfArguments(int count) {
       super("Invalid number of arguments, expected " + count);
     }
