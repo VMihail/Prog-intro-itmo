@@ -23,6 +23,10 @@ public class FastScanner {
     reader = new InputStreamReader(input);
   }
 
+  public FastScanner(File file) throws FileNotFoundException {
+    reader = new FileReader(file);
+  }
+
   public boolean hasNext() {
     if (state == STATE_CLOSED) {
       throw new IllegalStateException("Scanner is closed");

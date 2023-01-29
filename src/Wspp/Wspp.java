@@ -1,5 +1,7 @@
 package Wspp;
 
+import Utils.FastScanner;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -7,6 +9,7 @@ import java.util.*;
 
 public class Wspp {
   private static int nextPosition = 1;
+
   private static void addWord(final Map<String, Node> dictionary, final String word) {
     if (dictionary.containsKey(word)) {
       dictionary.get(word).addPosition(nextPosition++);
@@ -18,9 +21,9 @@ public class Wspp {
   public static void main(String[] args) {
     final String inputFileName = args[0];
     final String outputFileName = args[1];
-    Scanner in = null;
+    FastScanner in = null;
     try {
-      in = new Scanner(new File(inputFileName));
+      in = new FastScanner(new File(inputFileName));
     } catch (FileNotFoundException e) {
       System.out.println("input file not found " + e.getMessage());
     }
