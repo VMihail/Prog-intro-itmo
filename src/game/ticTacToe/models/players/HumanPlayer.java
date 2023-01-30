@@ -22,9 +22,6 @@ public class HumanPlayer implements Player {
 
   @Override
   public Move move(Position position) {
-    out.println("Position:");
-    out.println(position);
-    out.println(position.getCurrentCell() + " move");
     while (true) {
       out.println("Enter row and col");
       Move move = new Move(in.nextInt() - 1, in.nextInt() - 1, position.getCurrentCell());

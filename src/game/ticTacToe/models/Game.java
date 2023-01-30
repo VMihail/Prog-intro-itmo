@@ -1,38 +1,44 @@
 package game.ticTacToe.models;
 
+import game.ticTacToe.enums.Cell;
 import game.ticTacToe.enums.Result;
 import game.ticTacToe.interfaces.Board;
 import game.ticTacToe.interfaces.Player;
+import game.ticTacToe.loggers.Logger;
 
 public class Game {
   private final Player firstPlayer;
   private final Player secondPlayer;
-  private final boolean log;
+  private final Logger logger;
 
-
-  public Game(final Player firstPlayer, final Player secondPlayer, final boolean log) {
+  public Game(final Player firstPlayer, final Player secondPlayer, final Logger logger) {
     this.firstPlayer = firstPlayer;
     this.secondPlayer = secondPlayer;
-    this.log = log;
+    this.logger = logger;
   }
 
   public int play(final Board board) {
+    log("The game started");
     while (true) {
+      log("makes a move " + board.getPosition().getCurrentCell());
       final int firstPlayerResult = makeMove(board, firstPlayer, 1);
+      showBoard(board);
       if (firstPlayerResult != -1) {
         return firstPlayerResult;
       }
+      log("makes a move " + board.getPosition().getCurrentCell());
       final int secondPlayerResult = makeMove(board, secondPlayer, 2);
+      showBoard(board);
       if (secondPlayerResult != -1) {
         return secondPlayerResult;
       }
-      System.out.println(board);
     }
   }
 
   private int makeMove(final Board board, final Player player, final int number) {
     Move move = player.move(board.getPosition());
     Result result = board.makeMove(move);
+    log("move - " + move.toString());
     if (result == Result.WIN) {
       return number;
     } else if (result == Result.DRAW) {
@@ -41,5 +47,21 @@ public class Game {
       return 3 - number;
     }
     return -1;
+  }
+
+  private void showBoard(final Board board) {
+    StringBuilder sb = new StringBuilder();
+    for (int row = 0; row < 3; row++) {
+      for (int col = 0; col < 3; col++) {
+        Cell cell = board.getCell(row, col);
+        sb.append(cell == Cell.E ? "." : cell).append(" ");
+      }
+      sb.append("\n");
+    }
+    log(sb.toString());
+  }
+
+  private void log(String info) {
+    logger.showInfo(info);
   }
 }

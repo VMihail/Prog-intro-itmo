@@ -54,6 +54,14 @@ public class TicTacToeBoard implements Board, Position {
   }
 
   @Override
+  public Cell getCell(int row, int col) {
+    if (row < 0 || row > 2 || col < 0 || col > 2) {
+      throw new IndexOutOfBoundsException("going beyond the board");
+    }
+    return field[row][col];
+  }
+
+  @Override
   public boolean isValidMove(Move move) {
     return move.getRow() >= 0 && move.getRow() <= 2 &&
       move.getCol() >= 0 && move.getCol() <= 2 &&
@@ -64,17 +72,5 @@ public class TicTacToeBoard implements Board, Position {
   @Override
   public Cell getCurrentCell() {
     return currentCell;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    for (Cell[] row : field) {
-      for (Cell cell : row) {
-        sb.append(cell).append(" ");
-      }
-      sb.append("\n");
-    }
-    return sb.toString();
   }
 }
