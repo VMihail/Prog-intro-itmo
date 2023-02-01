@@ -62,6 +62,16 @@ public class TicTacToeBoard implements Board, Position {
   }
 
   @Override
+  public int getRowSize() {
+    return 3;
+  }
+
+  @Override
+  public int getColSize() {
+    return 3;
+  }
+
+  @Override
   public boolean isValidMove(Move move) {
     return move.getRow() >= 0 && move.getRow() <= 2 &&
       move.getCol() >= 0 && move.getCol() <= 2 &&

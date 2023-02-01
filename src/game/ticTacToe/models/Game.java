@@ -17,6 +17,22 @@ public class Game {
     this.logger = logger;
   }
 
+  protected void showBoard(final Board board) {
+    StringBuilder sb = new StringBuilder();
+    for (int row = 0; row < 3; row++) {
+      for (int col = 0; col < 3; col++) {
+        Cell cell = board.getCell(row, col);
+        sb.append(cell == Cell.E ? "." : cell).append(" ");
+      }
+      sb.append("\n");
+    }
+    log(sb.toString());
+  }
+
+  protected void showMove(final Move move) {
+    log("move - " + "(" + (move.getRow() + 1) + ", " + (move.getCol() + 1) + ")");
+  }
+
   public int play(final Board board) {
     log("The game started");
     while (true) {
@@ -38,7 +54,7 @@ public class Game {
   private int makeMove(final Board board, final Player player, final int number) {
     Move move = player.move(board.getPosition());
     Result result = board.makeMove(move);
-    log("move - " + move.toString());
+    showMove(move);
     if (result == Result.WIN) {
       return number;
     } else if (result == Result.DRAW) {
@@ -49,19 +65,7 @@ public class Game {
     return -1;
   }
 
-  private void showBoard(final Board board) {
-    StringBuilder sb = new StringBuilder();
-    for (int row = 0; row < 3; row++) {
-      for (int col = 0; col < 3; col++) {
-        Cell cell = board.getCell(row, col);
-        sb.append(cell == Cell.E ? "." : cell).append(" ");
-      }
-      sb.append("\n");
-    }
-    log(sb.toString());
-  }
-
-  private void log(String info) {
+  protected void log(String info) {
     logger.showInfo(info);
   }
 }

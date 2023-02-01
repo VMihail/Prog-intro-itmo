@@ -8,4 +8,6 @@ public interface Board {
   Position getPosition();
   Result makeMove(Move move);
   Cell getCell(int row, int col);
+  int getRowSize();
+  int getColSize();
 }

@@ -7,7 +7,7 @@ import game.ticTacToe.models.Move;
 import java.util.Random;
 
 public class RandomPlayer implements Player {
-  private final Random random;
+  protected final Random random;
 
   public RandomPlayer(Random random) {
     this.random = random;
