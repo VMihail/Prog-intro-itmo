@@ -6,12 +6,12 @@ import game.ticTacToe.interfaces.Board;
 import game.ticTacToe.interfaces.Player;
 import game.ticTacToe.loggers.Logger;
 
-public class Game {
+public class TicTacToeGame {
   private final Player firstPlayer;
   private final Player secondPlayer;
   private final Logger logger;
 
-  public Game(final Player firstPlayer, final Player secondPlayer, final Logger logger) {
+  public TicTacToeGame(final Player firstPlayer, final Player secondPlayer, final Logger logger) {
     this.firstPlayer = firstPlayer;
     this.secondPlayer = secondPlayer;
     this.logger = logger;

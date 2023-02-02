@@ -4,9 +4,9 @@ import game.ticTacToe.enums.Cell;
 import game.ticTacToe.interfaces.Board;
 import game.ticTacToe.interfaces.Player;
 import game.ticTacToe.loggers.Logger;
-import game.ticTacToe.models.Game;
+import game.ticTacToe.models.TicTacToeGame;
 
-public class MnkGame extends Game {
+public class MnkGame extends TicTacToeGame {
   public MnkGame(Player firstPlayer, Player secondPlayer, Logger logger) {
     super(firstPlayer, secondPlayer, logger);
   }
