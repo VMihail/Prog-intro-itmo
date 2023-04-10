@@ -7,6 +7,9 @@ import game.ticTacToe.models.Move;
 import java.util.Random;
 
 public class RandomPlayer implements Player {
+  /**
+  * Оказалось, что этот класс устарел, вместо него лучше использовать ThreadLocalRandom
+  */
   protected final Random random;
 
   public RandomPlayer(Random random) {
